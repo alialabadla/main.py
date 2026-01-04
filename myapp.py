@@ -19,3 +19,4 @@ price = ticker.history(period="1d")['Close'].iloc[-1]
 st.metric(label=f"السعر الحالي لـ {option}", value=f"${price:,.2f}")
 
 st.success("التطبيق يعمل بنجاح على سحابة ستريملت!")
+i
