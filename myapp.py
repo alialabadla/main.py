@@ -1,15 +1,13 @@
+import streamlit as st
 import ccxt
 
-st.title("بيانات كريبتو حية (CCXT)")
+st.title("Crypto Data Live")
 
-‎# جلب بيانات من منصة Binance
+# Fetch data
 try:
     exchange = ccxt.binance()
-    symbol = 'BTC/USDT'
-    ticker = exchange.fetch_ticker(symbol)
-    
-    st.metric(label=f"سعر {symbol} الآن", value=f"${ticker['last']:,.2f}")
-    st.write(f"أعلى سعر اليوم: {ticker['high']}")
-    st.write(f"أدنى سعر اليوم: {ticker['low']}")
+    ticker = exchange.fetch_ticker('BTC/USDT')
+    price = ticker['last']
+    st.metric(label="BTC/USDT", value=f"${price:,.2f}")
 except Exception as e:
-    st.error(f"خطأ في جلب البيانات: {e}")
+    st.error(f"Error: {e}")
