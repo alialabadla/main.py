@@ -3,11 +3,15 @@ import ccxt
 
 st.title("Crypto Data Live")
 
-# Fetch data
+# الاتصال بمنصة Kraken (تعمل عادة بدون قيود جغرافية)
 try:
-    exchange = ccxt.binance()
-    ticker = exchange.fetch_ticker('BTC/USDT')
+    exchange = ccxt.kraken() 
+    symbol = 'BTC/USDT'
+    ticker = exchange.fetch_ticker(symbol)
     price = ticker['last']
-    st.metric(label="BTC/USDT", value=f"${price:,.2f}")
+    
+    st.metric(label=f"سعر {symbol} (Kraken)", value=f"${price:,.2f}")
+    st.success("تم جلب البيانات بنجاح!")
 except Exception as e:
-    st.error(f"Error: {e}")
+    st.error(f"حدث خطأ: {e}")
+
